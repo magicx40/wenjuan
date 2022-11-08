@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <el-button type="primary" round>Primary</el-button>
+    <div class="page_home">
+       
     </div>
 </template>
 <script setup lang='ts'>
