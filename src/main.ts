@@ -6,11 +6,17 @@ import {
     // create naive ui
     create,
     // component
-    NButton
+    NButton,
+    NCarousel,
+    NCarouselItem
 } from 'naive-ui'
 
 const naive = create({
-    components: [NButton]
+    components: [
+        NButton,
+        NCarousel,
+        NCarouselItem,
+    ]
 })
 const app = createApp(App);
 
