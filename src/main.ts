@@ -8,7 +8,8 @@ import {
     // component
     NButton,
     NCarousel,
-    NCarouselItem
+    NCarouselItem,
+    NIcon
 } from 'naive-ui'
 
 const naive = create({
@@ -16,6 +17,7 @@ const naive = create({
         NButton,
         NCarousel,
         NCarouselItem,
+        NIcon
     ]
 })
 const app = createApp(App);
