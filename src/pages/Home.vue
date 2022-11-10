@@ -6,14 +6,21 @@
                     <span>{{moviesList.length}}</span>
                     <span>视频数量</span>
                 </div>
-                <div>
-
+                <div class="humbnails_wrap">
+                    <n-carousel>
+                        <n-carousel-item v-for="item in moviesList" :key="item.id">
+                            <img style="height: 100px;" :src="item.url" />
+                        </n-carousel-item>
+                    </n-carousel>
+                   
                 </div>
             </div>
             <n-carousel class="carousel_card" effect="card"
                 prev-slide-style="transform: translateX(-150%) translateZ(-200px);"
-                next-slide-style="transform: translateX(50%) translateZ(-200px);" style="height: 400px;"
-                show-arrow :touchable="false">
+                next-slide-style="transform: translateX(50%) translateZ(-200px);" 
+                style="height: 400px;"
+                show-arrow 
+                :touchable="false">
                 <n-carousel-item :style="{ width: '60%' }" v-for="item in moviesList" :key="item.id">
                     <img class="carousel-img" :src="item.url">
                 </n-carousel-item>
@@ -81,6 +88,11 @@ const moviesList = ref([
         .movie_info {
             display: flex;
             flex-direction: column;
+        }
+        .humbnails_wrap {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
     }
     .carousel_card {
