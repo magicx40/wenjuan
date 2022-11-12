@@ -21,6 +21,10 @@ const slideProps = {
     currentIndex: {
         type: Number,
         default: 0
+    },
+    spaceBetween: {
+        type: Number,
+        default: 0
     }
 }
 
@@ -75,7 +79,7 @@ export default defineComponent({
                 if (totalItemsRef.value - activeSlideIndex.value < props.slidesPerView) {
                     offsetX = (props.slidesPerView - (totalItemsRef.value - activeSlideIndex.value)) * slideItemWidth.value;
                 };
-                let translate = - activeSlideIndex.value * slideItemWidth.value + offsetX;
+                let translate = - activeSlideIndex.value * (slideItemWidth.value + props.spaceBetween) + offsetX;
                 slidesRef.value.style = `transition-duration: ${enableTransition ? '300ms' : '0ms'}; transform: translateX(${translate}px);`
             });
         }
@@ -113,7 +117,7 @@ export default defineComponent({
                         if (i === activeSlideIndex.value && !slideItem.classList.contains('slide_item--active')) {
                             slideItem.classList.add('slide_item--active');
                         }
-                        slideItem.style = `width:${slideItemWidth.value}px;`;
+                        slideItem.style = `width:${slideItemWidth.value}px;margin-right:${i === slidesItemList.length - 1 ? 0 : props.spaceBetween}px`;
                     }
                 }
             });
@@ -143,7 +147,7 @@ export default defineComponent({
         }, { immediate: true });
 
         watch(() => props.currentIndex, (newProp) => {
-            to(props.currentIndex,false);
+            to(props.currentIndex, false);
         }, { immediate: true });
 
         watch(activeSlideIndex, (newValue) => {
