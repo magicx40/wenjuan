@@ -14,7 +14,7 @@
                     </button>
                     <my-slide ref="slideRef" :slides-per-view="4" @update:currentIndex="updateSlideCurrentIndex"
                         :loop="true">
-                        <div class="slide_item" v-for="item in moviesList" :key="item.id" @click="slideTo(item)">
+                        <div class="slide_item" v-for="item in moviesList" :key="item.id" @click="slideItemClick(item)">
                             <!-- <img :src="item.url" /> -->
                             <video :ref="(el) => setSourceRefs(el, item)"
                                 style="width: 100%;height: 100%;background: #000;" mediatype="video"
@@ -40,7 +40,7 @@
                     prev-slide-style="transform: translateX(-150%) translateZ(-200px);"
                     next-slide-style="transform: translateX(50%) translateZ(-200px);" style="height: 400px;" show-arrow
                     :touchable="false" :on-update:currentIndex="updateMovieCurrentIndex">
-                    <n-carousel-item :style="{ width: '60%' }" v-for="item in moviesList" :key="item.id">
+                    <n-carousel-item :style="{ width: '60%' }" v-for="item in moviesList" :key="item.id" @click="movieItemClick(item)">
                         <!-- <img class="carousel-img" :src="item.url"> -->
                         <video style="width: 100%;height: 100%;background: #000;" mediatype="video"
                             :ref="(el) => setMovieRefs(el, item)">
@@ -152,9 +152,20 @@ export default defineComponent({
             }
         }
 
-        const slideTo = (videoInfo: Record<string,any>) => {
+        const slideItemClick = (videoInfo: Record<string,any>) => {
             if (slideRef.value) {
                 slideRef.value.to(videoInfo.id);
+                if (!videoInfo.sourceRef.controls) {
+                    play(videoInfo.id);
+                }
+            }
+        }
+
+        const movieItemClick = (videoInfo: Record<string,any>) => {
+            if (moviesRef.value) {
+                if (!videoInfo.movieRef.controls) {
+                    play(videoInfo.id);
+                }
             }
         }
 
@@ -231,7 +242,8 @@ export default defineComponent({
             setSourceRefs,
             setMovieRefs,
             playVideo,
-            slideTo
+            slideItemClick,
+            movieItemClick
         }
     }
 });
