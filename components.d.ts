@@ -10,6 +10,10 @@ declare module '@vue/runtime-core' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    McSlide: typeof import('./src/components/McSlide.vue')['default']
+    MCSlide: typeof import('./src/components/MCSlide.vue')['default']
+    MSlide: typeof import('./src/components/mSlide.vue')['default']
+    MySlide: typeof import('./src/components/mySlide.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
