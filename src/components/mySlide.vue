@@ -75,10 +75,12 @@ export default defineComponent({
         const updateSlideItems = (enableTransition = true) => {
             nextTick(() => {
                 if (!slidesRef || !slidesRef.value) return;
+                if (totalItemsRef.value <= props.slidesPerView) return;
                 let offsetX = 0;
                 if (totalItemsRef.value - activeSlideIndex.value < props.slidesPerView) {
                     offsetX = (props.slidesPerView - (totalItemsRef.value - activeSlideIndex.value)) * slideItemWidth.value;
                 };
+                console.log('offsetX:', offsetX);
                 let translate = - activeSlideIndex.value * (slideItemWidth.value + props.spaceBetween) + offsetX;
                 slidesRef.value.style = `transition-duration: ${enableTransition ? '300ms' : '0ms'}; transform: translateX(${translate}px);`
             });

@@ -12,7 +12,7 @@
                             <ArrowBack />
                         </n-icon>
                     </button>
-                    <my-slide ref="slideRef" :slides-per-view="4" @update:currentIndex="updateSlideCurrentIndex"
+                    <my-slide ref="slideRef" :slides-per-view="12" @update:currentIndex="updateSlideCurrentIndex"
                         :loop="true">
                         <div class="slide_item" v-for="item in moviesList" :key="item.id" @click="slideItemClick(item)">
                             <!-- <img :src="item.url" /> -->
